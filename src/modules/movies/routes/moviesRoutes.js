@@ -1,10 +1,11 @@
 import express from "express";
-import fs from "fs";
 
-import { movieList } from "../controllers/movieList.js";
+import { movieList, movieDetail } from "../controllers/controller.js";
 
 const route = express.Router();
 
 route.get("/", movieList);
+
+route.get("/:id", movieDetail);
 
 export { route };
