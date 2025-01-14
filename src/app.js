@@ -1,14 +1,12 @@
-// movies.json file uusgene
-// json file iin medeellig chataar ywuuln
-
 import express from "express";
 import fs from "fs";
-import path from "path";
+import { route as moovieRoutes } from "./modules/movies/routes/moviesRoutes.js";
 
 const app = express();
-const port = 3000;
 
 app.use(express.json());
+
+app.use("/movies", moovieRoutes);
 
 app.get("/", (req, res) => {
   //html info page
@@ -16,14 +14,6 @@ app.get("/", (req, res) => {
 
   res.setHeader("Content-type", "text/html");
   res.send(html);
-});
-
-app.get("/movies", (req, res) => {
-  const movies = JSON.parse(fs.readFileSync("./movies.json"));
-
-  const { movieTitile } = req.query;
-
-  res.send({ success: true, data: movies });
 });
 
 app.post("/movies", (req, res) => {
@@ -38,6 +28,4 @@ app.post("/movies", (req, res) => {
   res.send({ success: true, message: "movie added" });
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+export { app };

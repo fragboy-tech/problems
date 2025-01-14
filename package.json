@@ -1,0 +1,26 @@
+{
+  "name": "problems",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fragboy-tech/problems.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fragboy-tech/problems/issues"
+  },
+  "homepage": "https://github.com/fragboy-tech/problems#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
+}
