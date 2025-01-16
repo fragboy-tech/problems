@@ -2,26 +2,23 @@ import fs from "fs";
 import { readJSONFile } from "../../../utils/utils.js";
 
 const movieList = (req, res) => {
-  const movies = { name: "adad" };
+  const movies = readJSONFile("movies");
 
   const { limit, search } = req.query;
 
+  let result = [];
+
   if (limit) {
-    const result = [];
-    for (let i = 0; i <= limit; i++) {
+    for (let i = 0; i < limit; i++) {
       result.push(movies[i]);
     }
-
-    res.send(result);
   }
 
   if (search) {
-    const result = movies.filter((movie) => movie.title.includes(search));
-
-    res.send(result);
+    result = result.filter((movie) => movie.title.includes(search));
   }
 
-  res.send(movies);
+  res.send(result);
 };
 
 const movieDetail = (req, res) => {

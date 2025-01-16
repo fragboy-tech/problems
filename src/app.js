@@ -1,12 +1,15 @@
 import express from "express";
 import fs from "fs";
-import { route as moovieRoutes } from "./modules/movies/routes/moviesRoutes.js";
+import { route as movieRoutes } from "./modules/movies/routes/moviesRoutes.js";
+import { route as bookRoutes } from "./modules/book/routes/booksRoutes.js";
 
 const app = express();
 
 app.use(express.json());
 
-app.use("/movies", moovieRoutes);
+app.use("/movies", movieRoutes);
+
+app.use("/book", bookRoutes);
 
 app.get("/", (req, res) => {
   //html info page
@@ -26,6 +29,18 @@ app.post("/movies", (req, res) => {
   fs.writeFileSync("./movies.json", movies);
 
   res.send({ success: true, message: "movie added" });
+});
+
+app.post("/book", (req, res) => {
+  const book = req.body;
+
+  const books = JSON.parse(fs.readFileSync("./books.json"));
+
+  movies.push(movie);
+
+  fs.writeFileSync("./books.json", books);
+
+  res.send({ success: true, message: "book added" });
 });
 
 export { app };
