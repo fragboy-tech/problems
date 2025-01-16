@@ -18,6 +18,10 @@ const bookList = (req, res) => {
     result = result.filter((book) => book.title.includes(search));
   }
 
+  if (!result.length) {
+    res.send(books);
+  }
+
   res.send(result);
 };
 
@@ -29,5 +33,15 @@ const bookDetail = (req, res) => {
 
   res.send(book);
 };
+const bookAdd = (req, res) => {
+  const book = req.body;
 
-export { bookList, bookDetail };
+  const books = readJSONFile("book");
+
+  books.push(book);
+
+  fs.writeFileSync("./data/books.json", JSON.stringify(books));
+
+  res.send({ success: true, message: "book added" });
+};
+export { bookList, bookDetail, bookAdd };

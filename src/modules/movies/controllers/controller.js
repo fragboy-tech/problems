@@ -18,6 +18,10 @@ const movieList = (req, res) => {
     result = result.filter((movie) => movie.title.includes(search));
   }
 
+  if (!result.length) {
+    res.send(movies);
+  }
+
   res.send(result);
 };
 
@@ -30,4 +34,16 @@ const movieDetail = (req, res) => {
   res.send(movie);
 };
 
-export { movieList, movieDetail };
+const movieAdd = (req, res) => {
+  const movie = req.body;
+
+  const movies = readJSONFile("movies");
+
+  movies.push(movie);
+
+  fs.writeFileSync("./data/movies.json", JSON.stringify(movies));
+
+  res.send({ success: true, message: "movie added" });
+};
+
+export { movieList, movieDetail, movieAdd };

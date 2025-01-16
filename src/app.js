@@ -19,28 +19,4 @@ app.get("/", (req, res) => {
   res.send(html);
 });
 
-app.post("/movies", (req, res) => {
-  const movie = req.body;
-
-  const movies = JSON.parse(fs.readFileSync("./movies.json"));
-
-  movies.push(movie);
-
-  fs.writeFileSync("./movies.json", movies);
-
-  res.send({ success: true, message: "movie added" });
-});
-
-app.post("/book", (req, res) => {
-  const book = req.body;
-
-  const books = JSON.parse(fs.readFileSync("./books.json"));
-
-  movies.push(movie);
-
-  fs.writeFileSync("./books.json", books);
-
-  res.send({ success: true, message: "book added" });
-});
-
 export { app };
