@@ -38,25 +38,6 @@
     "website": "https://www.paramountmovies.com/movies/the-godfather"
   },
   {
-    "id": 3,
-    "title": "The Dark Knight",
-    "year": 2008,
-    "genre": ["Action", "Crime", "Drama"],
-    "rating": 9,
-    "director": "Christopher Nolan",
-    "actors": ["Christian Bale", "Heath Ledger", "Gary Oldman"],
-    "plot": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
-    "poster": "https://fakeimg.pl/220x310/ff00ff",
-    "trailer": "https://example.com/the_dark_knight_trailer.mp4",
-    "runtime": 152,
-    "awards": "Won 2 Oscars",
-    "country": "USA",
-    "language": "English",
-    "boxOffice": "$1.005 billion",
-    "production": "Warner Bros. Pictures",
-    "website": "https://www.warnerbros.com/movies/dark-knight"
-  },
-  {
     "id": 4,
     "title": "Pulp Fiction",
     "year": 1994,
@@ -93,25 +74,6 @@
     "boxOffice": "$677.9 million",
     "production": "Paramount Pictures",
     "website": "https://www.paramountmovies.com/movies/forrest-gump"
-  },
-  {
-    "id": 6,
-    "title": "Inception",
-    "year": 2010,
-    "genre": ["Action", "Adventure", "Sci-Fi"],
-    "rating": 8.8,
-    "director": "Christopher Nolan",
-    "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page"],
-    "plot": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
-    "poster": "https://fakeimg.pl/220x310/f8f8f8",
-    "trailer": "https://example.com/inception_trailer.mp4",
-    "runtime": 148,
-    "awards": "Won 4 Oscars",
-    "country": "USA",
-    "language": "English",
-    "boxOffice": "$829.9 million",
-    "production": "Warner Bros. Pictures",
-    "website": "https://www.warnerbros.com/movies/inception"
   },
   {
     "id": 7,
