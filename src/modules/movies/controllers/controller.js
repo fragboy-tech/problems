@@ -45,51 +45,58 @@ const movieDetail = (req, res) => {
 
 const movieAdd = (req, res) => {
   const { title, year, rating, country, poster, director_id } = req.body;
+  const movies = req.body;
 
-  const query = `insert into movies (title, year, rating, country, poster, director_id)
+  let query = `insert into movies (title, year, rating, country, poster, director_id)
   values ( "${title}", "${year}", ${rating}, "${country}", ${poster}, ${director_id})`;
 
-  db.query(query)
+  const values = [];
+
+  for (let i = 0; i < movies.length; i++) {
+    const { title, year, rating, country, poster, director_id } = movies[i];
+
+    query += ` (?, ?, ?, ?, ?, ?)${movies.lenght - 1 === i ? "" : ","} `;
+
+    values.push(title, year, rating, country, poster, director_id);
+  }
+
+  db.execute(query, values)
     .then((data) => res.send(data[0]))
     .catch((err) => console.log(err));
+  res.send({ success: true, message: "movie added" });
 };
 
 const movieEdit = (req, res) => {
-  const movies = readJSONFile("movies");
   const { id } = req.params;
   const movie = req.body;
 
   const foundMovie = movies.findIndex((movie) => movie.id === parseInt(id));
   movies[foundMovie] = movie;
 
-  writeJSONFile("movies", foundMovie);
   res.send({ success: true, message: "movie updated" });
 };
 
 const movieUpdate = (req, res) => {
-  const movies = readJSONFile("movies");
   const { id } = req.params;
-  const movie = req.body;
+  const { title, year, rating, country, poster, director_id } = req.body;
+  const query = ` update movies set title = "${title}", year = "${year}", rating = ${rating}, country = "${country}", poster = "${poster}", director_id = ${director_id} where movies.id = ${id}`;
 
-  const targetMovie = movies.find((movie) => movie.id === parseInt(id));
-  for (const key in movie) {
-    if (targetMovie[key]) {
-      targetMovie[key] = movie[key];
-    }
-  }
+  db.query(query)
+    .then((data) => res.send(data[0]))
+    .catch((err) => console.log(err));
 
-  writeJSONFile("movies", targetMovie);
   res.send({ success: true, message: "movie updated" });
 };
 
 const movieDelete = (req, res) => {
   const { id } = req.params;
 
-  const movies = readJSONFile("movies");
+  const query = ` delete from movie_genres where movie_genres.movie_id = ${id} delete from movies where movies.id = ${id} `;
 
-  const remainingMovies = movies.filter((movie) => movie.id !== Number(id));
+  db.query(query)
+    .then((data) => res.send(data[0]))
+    .catch((err) => console.log(err));
 
-  writeJSONFile("movies", remainingMovies);
   res.send({ success: true, message: "movie deleted" });
 };
 
